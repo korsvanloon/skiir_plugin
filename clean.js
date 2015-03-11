@@ -1,4 +1,5 @@
-function log(){ if(console) console.log.apply(console, arguments); };
+function log(){ if(console) console.log.apply(console, arguments); }
+
 $.fn.fc = function(){
 	return $(this.get(0).contentDocument);
 };
