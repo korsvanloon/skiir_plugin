@@ -1,15 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "BBClean - Cleanup your schools Blackboard page",
-  "description": "Blackboard tends to not be very good concerning screen space. This plugin tries to fix this.",
-  "version": "1.0",
-//  "permissions": [
-//    "declarativeContent",
-//    "https://blackboard.tudelft.nl/*",
-//    "https://ajax.googleapis.com/"
-//  ],
-
+  "name": "Skiir Plugin",
+  "description": "Request for explanations in articles on Bloomberg.com",
+  "version": "0.1",
   "background_page" : "background.html",
 
   "permissions" : [
@@ -20,11 +14,11 @@
 
   "content_scripts": [
     {
-      "matches": ["https://blackboard.tudelft.nl/*"],
+      "matches": ["http://www.bloomberg.com//*"],
       "js": ["jquery.js", "clean.js"]
     },
     {
-      "matches": ["https://blackboard.tudelft.nl/*"],
+      "matches": ["http://www.bloomberg.com/*"],
       "all_frames": true,
       "css": ["bbclean.css"]
     }
