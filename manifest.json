@@ -1,22 +1,21 @@
 {
   "manifest_version": 2,
-
   "name": "Skiir Plugin",
   "description": "Request for explanations in articles on Bloomberg.com",
   "version": "1.0",
-//  "background_page" : "background.html",
-
-  "permissions" : [
+  "permissions": [
     "declarativeContent",
     "tabs",
-    "contextMenus",
-    "http://www.google.com/buzz/api/buzzThis/buzzCounter"
+    "contextMenus"
+    //"http://www.nu.nl"
   ],
-
   "content_scripts": [
     {
       "matches": ["http://www.bloomberg.com/*"],
-      "js": ["jquery.js", "clean.js"]
+      "js": [
+        "jquery.js",
+        "clean.js"
+      ]
     },
     {
       "matches": ["http://www.bloomberg.com/*"],
@@ -24,12 +23,13 @@
       "css": ["bbclean.css"]
     }
   ],
+
   "page_action": {
-//    "default_icon": "tudelft_logo.png"
+    //    "default_icon": "tudelft_logo.png"
+    "default_popup": "popup.html"
   },
-  "background" : {
+  "background": {
     "scripts": ["background.js"],
     "persistent": false
-  },
-  "web_accessible_resources": ["tudelft_logo.png"]
+  }
 }
