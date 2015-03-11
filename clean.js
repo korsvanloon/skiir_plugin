@@ -1,7 +1,7 @@
 function log(){ if(console) console.log.apply(console, arguments); };
 $.fn.fc = function(){
 	return $(this.get(0).contentDocument);
-}
+};
 
 var contentFrame = $("#contentFrame").css("height", "+=42").fc(),
 		navFrame = $("#navFrame").css("height", "-=42").fc();
