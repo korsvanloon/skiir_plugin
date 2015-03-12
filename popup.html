@@ -1,12 +1,20 @@
+<html>
 
-<h1>Here are the requested explanations:</h1>
-"The House has been built"<br><button type="button" id="myBtn" onclick="Explain()">Explain!</button><br>
-"The House has been moved"<br><button>Explain</button><br>
-"The House has been broken down"<br><button>Explain</button><br>
-
+<button id="mybutton">click me</button>
 <script>
-    function Explain () {
-        document.write("ok");
-    }
-</script>
+    var greeting = "hello, ";
+    var button = document.getElementById("mybutton");
+    button.person_name = "Bob";
+    button.addEventListener("click", function() {
+        alert(greeting + button.person_name + ".");
+    }, false);
 
+//var greeting = "hola, ";
+//var button = document.getElementById("mybutton");
+//button.person_name = "Roberto";
+//button.addEventListener("click", function() {
+//alert(greeting + button.person_name + ".");
+//}, false);
+
+</script>
+</html>

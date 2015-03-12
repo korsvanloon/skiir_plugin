@@ -7,7 +7,6 @@
     "declarativeContent",
     "tabs",
     "contextMenus"
-    //"http://www.nu.nl"
   ],
   "content_scripts": [
     {

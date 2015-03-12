@@ -1,19 +1,3 @@
-//function checkForValidUrl(tabId, changeInfo, tab) {
-//    console.log(tab.url);
-//    // If  'example.com' is the hostname for the tabs url.
-//    var a = document.createElement ('a');
-//    a.href = tab.url;
-//    if (a.hostname == "bloomberg.com") {
-//        // ... show the page action.
-//        chrome.browserAction.show(tabId);
-//    }
-//}
-
-// Listen for any changes to the URL of any tab.
-//chrome.tabs.onUpdated.addListener(checkForValidUrl);
-////For highlighted tab as well
-//chrome.tabs.onHighlighted.addListener(checkForValidUrl);
-
 chrome.runtime.onInstalled.addListener(function() {
     // Replace all rules ...
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
@@ -31,4 +15,43 @@ chrome.runtime.onInstalled.addListener(function() {
             }
         ]);
     });
+
+// Set up context menu at install time.
+    var context = "selection";
+    var title = "Can someone explain this?";
+    var id = chrome.contextMenus.create({"title": title, "contexts":[context],
+        "id": "context" + context});
+
 });
+
+//chrome.runtime.onInstalled.addListener(function() {
+//});
+
+// add click event
+chrome.contextMenus.onClicked.addListener(onClickHandler);
+
+// The onClicked callback function.
+function onClickHandler(info, tab) {
+    var sText = info.selectionText;
+    console.log(info);
+    var url = tab.url;
+    console.log(url);
+    //window.open(url, '_blank');
+}
+
+
+function getSelectionParentElement() {
+    var parentEl = null, sel;
+    if (window.getSelection) {
+        sel = window.getSelection();
+        if (sel.rangeCount) {
+            parentEl = sel.getRangeAt(0).commonAncestorContainer;
+            if (parentEl.nodeType != 1) {
+                parentEl = parentEl.parentNode;
+            }
+        }
+    } else if ( (sel = document.selection) && sel.type != "Control") {
+        parentEl = sel.createRange().parentElement();
+    }
+    return parentEl;
+}
