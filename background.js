@@ -37,6 +37,8 @@ function onClickHandler(info, tab) {
     var url = tab.url;
     console.log(url);
     //window.open(url, '_blank');
+    var checkParent = getSelectionParentElement();
+    window.alert(sText + " " + url + " " + checkParent);
 }
 
 
@@ -50,7 +52,7 @@ function getSelectionParentElement() {
                 parentEl = parentEl.parentNode;
             }
         }
-    } else if ( (sel = document.selection) && sel.type != "Control") {
+    } else if ((sel = document.selection) && sel.type != "Control") {
         parentEl = sel.createRange().parentElement();
     }
     return parentEl;
