@@ -19,24 +19,29 @@ chrome.runtime.onInstalled.addListener(function() {
 // Set up context menu at install time.
     var context = "selection";
     var title = "Can someone explain this?";
-    var id = chrome.contextMenus.create({"title": title, "contexts":[context],
-        "id": "context" + context});
+    var id = chrome.contextMenus.create({
+        title: title,
+        contexts: [context],
+        documentUrlPatterns: ["http://www.bloomberg.com/*"],
+        id: "context" + context
+    });
 
 });
-
-//chrome.runtime.onInstalled.addListener(function() {
-//});
 
 // add click event
 chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 // The onClicked callback function.
 function onClickHandler(info, tab) {
-    var sText = info.selectionText;
     console.log(info);
-    var url = tab.url;
-    console.log(url);
-    //window.open(url, '_blank');
+    console.log(tab);
+
+    var details = {
+        selectionText: info.selectionText,
+        pageUrl: info.pageUrl
+    };
+
+    chrome.tabs.sendMessage(tab.id, {details: details});
 }
 
 

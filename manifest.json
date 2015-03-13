@@ -7,14 +7,12 @@
     "declarativeContent",
     "tabs",
     "contextMenus"
-    //"http://www.nu.nl"
   ],
   "content_scripts": [
     {
       "matches": ["http://www.bloomberg.com/*"],
       "js": [
-        "jquery.js",
-        "clean.js"
+        "content_script.js"
       ]
     },
     {
@@ -25,7 +23,6 @@
   ],
 
   "page_action": {
-    //    "default_icon": "tudelft_logo.png"
     "default_popup": "popup.html"
   },
   "background": {
