@@ -1,16 +1,25 @@
 chrome.runtime.onMessage.addListener(function(req, sender, sendResponse) {
 
-
+    // handle text selection requests
     if(req.details) {
         var data = req.details;
 
         data.parentElement = getSelectionParentElement();
-        console.log(data);
 
-        // send data to the server
+        console.dir(data.parentElement);
+
+        var button = '<a class="skiir-help">'+data.selectionText+'</a>';
+
+
+        data.parentElement.innerHTML = data.parentElement.innerHTML.replace(data.selectionText, button);
+        console.log(data.parentElement.innerHTML);
+
+        //TODO: send data to the server
+        //console.log(data);
    }
 });
 
+//document.body.innerHTML = document.body.innerHTML.replace();
 
 function getSelectionParentElement() {
     var parentEl = null, sel;

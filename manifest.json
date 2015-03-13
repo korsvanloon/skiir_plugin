@@ -18,13 +18,11 @@
     {
       "matches": ["http://www.bloomberg.com/*"],
       "all_frames": true,
-      "css": ["bbclean.css"]
+      "css": ["style.css"]
     }
   ],
-
   "page_action": {
     "default_popup": "popup.html"
-
   },
   "background": {
     "scripts": [

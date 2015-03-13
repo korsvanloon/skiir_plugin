@@ -16,20 +16,17 @@ chrome.runtime.onInstalled.addListener(function() {
         ]);
     });
 
-// Set up context menu at install time.
-    var context = "selection";
-    var title = "Can someone explain this?";
+    // Set up context menu at install time.
     var id = chrome.contextMenus.create({
-        title: title,
-        contexts: [context],
+        title: "Can someone explain this?",
+        contexts: ["selection"],
         documentUrlPatterns: ["http://www.bloomberg.com/*"],
-        id: "context" + context
+        id: "contextSelection"
     });
 
+    // add click event
+    chrome.contextMenus.onClicked.addListener(onClickHandler);
 });
-
-// add click event
-chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 // The onClicked callback function.
 function onClickHandler(info, tab) {
@@ -42,21 +39,4 @@ function onClickHandler(info, tab) {
     };
 
     chrome.tabs.sendMessage(tab.id, {details: details});
-}
-
-
-function getSelectionParentElement() {
-    var parentEl = null, sel;
-    if (window.getSelection) {
-        sel = window.getSelection();
-        if (sel.rangeCount) {
-            parentEl = sel.getRangeAt(0).commonAncestorContainer;
-            if (parentEl.nodeType != 1) {
-                parentEl = parentEl.parentNode;
-            }
-        }
-    } else if ((sel = document.selection) && sel.type != "Control") {
-        parentEl = sel.createRange().parentElement();
-    }
-    return parentEl;
 }

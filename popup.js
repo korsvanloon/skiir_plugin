@@ -1,13 +1,11 @@
-/**
- * Created by maartensteinfort on 12-03-15.
- */
+document.addEventListener('DOMContentLoaded', function() {
 
-function getBgColors (tab) {
-    // But for now, let's just make sure what we have so
-    // far is working as expected.
-    alert('The browser action was clicked! Yay!');
-}
+    //TODO: get all the explanation requests from the server
+    var items = [1, 2, 3];
 
-// When the browser action is clicked, call the
-// getBgColors function.
-chrome.pageAction.onClicked.addListener(getBgColors);
+    var ul = document.querySelector('ul');
+    for (var idx in items) {
+        var item = items[idx];
+        ul.innerHTML += '<li>' + item + '</li>';
+    }
+});
