@@ -55,7 +55,7 @@ function getSelectionParentElement() {
                 parentEl = parentEl.parentNode;
             }
         }
-    } else if ( (sel = document.selection) && sel.type != "Control") {
+    } else if ((sel = document.selection) && sel.type != "Control") {
         parentEl = sel.createRange().parentElement();
     }
     return parentEl;
