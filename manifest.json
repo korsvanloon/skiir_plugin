@@ -11,6 +11,7 @@
   "content_scripts": [
     {
       "matches": ["http://www.bloomberg.com/*"],
+      "run_at": "document_end",
       "js": [
         "content_script.js"
       ]

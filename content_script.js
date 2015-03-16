@@ -1,3 +1,45 @@
+// Test Url:
+// http://www.bloomberg.com/news/articles/2015-03-15/germans-tired-of-greek-demands-want-country-to-exit-euro
+
+var testSet = [
+    {
+        original:'Mueller’s sentiment is shared by a majority of Germans. A poll published March 13 by public broadcaster ZDF found 52 percent of his countrymen no longer want Greece to remain in Europe’s common currency, up from 41 percent last month. The shift is due to a view held by 80 percent of Germans that Greece’s government “isn’t behaving seriously toward its European partners.” ',
+        phrase:'Mueller’s sentiment'
+    }
+
+];
+
+
+// START: document onReady
+(function() {
+
+    // haal de explanationRequests en explanations op
+    var explanationRequests = testSet;
+
+    // update de DOM met buttons en explanation components
+    // TODO: Bug! only 1 request per paragraph!
+    for(var idx in explanationRequests) {
+        var explanationRequest = explanationRequests[idx];
+
+        // search page for explanationRequest.original
+        var paragraph = getParagraphOfText(explanationRequest.original);
+
+        // replace with button
+        addExplanationRequest(paragraph, explanationRequest.phrase);
+    }
+
+    document.querySelectorAll('.skiir-help').onclick = openDialog;
+
+})();
+
+
+function addExplanationRequest(paragraph, text) {
+    var button = '<button class="skiir-help">'+text+'</button>';
+    paragraph.innerHTML = paragraph.innerHTML.replace(text, button);
+}
+
+
+// Message handler (from background.js)
 chrome.runtime.onMessage.addListener(function(req, sender, sendResponse) {
 
     // handle text selection requests
@@ -6,20 +48,35 @@ chrome.runtime.onMessage.addListener(function(req, sender, sendResponse) {
 
         data.parentElement = getSelectionParentElement();
 
-        console.dir(data.parentElement);
+        addExplanationRequest(data.parentElement, data.selectionText);
 
-        var button = '<a class="skiir-help">'+data.selectionText+'</a>';
-
-
-        data.parentElement.innerHTML = data.parentElement.innerHTML.replace(data.selectionText, button);
-        console.log(data.parentElement.innerHTML);
-
-        //TODO: send data to the server
+        //TODO: send data to the server and popup.js (through background.js?)
         //console.log(data);
    }
 });
 
-//document.body.innerHTML = document.body.innerHTML.replace();
+function openDialog(e) {
+    e.preventDefault();
+    var text = e.target;
+    console.log(e);
+
+    chrome.windows.create({'url': 'explanation_dialog.html', 'type': 'popup'}, function(window) {
+
+    });
+}
+
+function getParagraphOfText(text) {
+    var elements = document.querySelectorAll(".article-body p");
+
+    for (var i = 0; i < elements.length; i++) {
+        var el = elements[i];
+
+        // TODO: BUG! deze check is niet netjes!!!
+        if(el.textContent.split(' ')[0] == text.split(' ')[0]) {
+            return el;
+        }
+    }
+}
 
 function getSelectionParentElement() {
     var parentEl = null, sel;
