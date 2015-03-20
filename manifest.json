@@ -13,8 +13,6 @@
       "matches": ["http://www.bloomberg.com/*"],
       "run_at": "document_end",
       "js": [
-        "angular.min.js",
-        "ui-bootstrap-tpls-0.12.1.min.js",
         "content_script.js"
       ]
     },
