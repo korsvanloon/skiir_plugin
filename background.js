@@ -24,14 +24,12 @@ chrome.runtime.onInstalled.addListener(function() {
         id: "contextSelection"
     });
 
-    // add click event
-    chrome.contextMenus.onClicked.addListener(onClickHandler);
 });
+// add click event
+chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 // The onClicked callback function.
 function onClickHandler(info, tab) {
-    console.log(info);
-    console.log(tab);
 
     var details = {
         selectionText: info.selectionText,
@@ -40,3 +38,7 @@ function onClickHandler(info, tab) {
 
     chrome.tabs.sendMessage(tab.id, {details: details});
 }
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+
+});

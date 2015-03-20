@@ -1,29 +1,50 @@
-body > .locationPane { margin-top: 0; }
-body > .locationPane > .contentPaneWide { margin: 0; }
-body > .locationPane > .contentPaneWide > .paneTabs { display: none; }
-body > .locationPane #content { padding-top: 4px; border: none; }
-body > .locationPane #content > #actionbar { display: none; }
-body > .locationPane #content > .container > .contentBox { border: 0 !important; border-top: 0 !important; }
-.containerPortal, .portal .container {
-  padding: 0 5px !important;
+.skiir-help {
+    background: none;
+    border: none;
+    border-bottom: 1px solid red;
+    padding: 0;
 }
 
-.appTabs #logo a,
-.appTabs #logo a:hover, 
-.appTabs #logo a:focus { background: none; padding: 0; margin: 5px 10px 0 0; }
+.skiir-explanation {
+    border-bottom: 1px solid green;
+    cursor: help;
+}
 
-#moduleReorderControls { display: none; }
+.skiir-explanation div {
+    display: none;
+    margin: 20px;
+    padding: 10px;
+    background-color: gainsboro;
+    font-style: italic;
+}
 
-/* Remove ugly banners */
-.vtbegenerated { display: none; }
+.skiir-explanation:hover div {
+    display: block;
+}
 
-#quick_links_wrap { top: 0 !important; border-radius: 0 0 4px 0 !important; }
+#skiir-dialog {
+    background: #FFF;
+    width: 300px;
+    text-align: center;
+    padding: 1.5em;
+    margin: 1em auto;
+    border: 0;
+    border-top: 5px solid #69c773;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    z-index: 100;
 
-.bouncer .brandingImgWrap { display: none; }
-.bouncer .tabWrapper-left .brandingImgWrap { display: block; }
+    position: fixed;
+    top: 50%;
+    height: 200px;
+    margin-top: -100px;
 
-#VBMessages {
-	padding: 0px 15px;
-	background: white;
-	color: black;
+}
+
+#skiir-dialog::backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
 }
