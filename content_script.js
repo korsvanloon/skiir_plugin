@@ -22,7 +22,9 @@ var explanationRequests = [], explanations = [];
 
 var dialogHtml =
     '<h3></h3>'+
-    '<textarea>write an explanation here</textarea>'+
+    '<textarea style="width: 426px; height: 87px;">write an explanation here</textarea>'+
+    'Pick your reference'+
+    '<iframe style="width:426px;" src="http://en.wikipedia.org/wiki/Greece"></iframe> </br></br>'+
     '<button id="done">Done</button>'+
     '<button id="close">Cancel</button>';
 
