@@ -32,7 +32,7 @@ chrome.contextMenus.onClicked.addListener(onClickHandler);
 function onClickHandler(info, tab) {
 
     var details = {
-        selectionText: info.selectionText,
+        phrase: info.selectionText,
         pageUrl: info.pageUrl
     };
 

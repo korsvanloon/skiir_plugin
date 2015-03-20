@@ -81,7 +81,6 @@ function addExplanationRequest(exReq) {
     exReq.paragraph.innerHTML = exReq.paragraph.innerHTML.replace(exReq.phrase, button.outerHTML);
 
     exReq.paragraph.querySelector('.skiir-help').onclick = function(e) { openDialog( exReq ); };
-    //button.onclick =
 }
 
 function updateExplanationRequest(exReq) {
@@ -144,7 +143,7 @@ chrome.runtime.onMessage.addListener(function(req, sender, sendResponse) {
     if(req.details) {
         var exReq = req.details;
 
-        exReq.parentElement = getSelectionParentElement();
+        exReq.paragraph = getSelectionParentElement();
 
         addExplanationRequest(exReq);
 
